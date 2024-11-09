@@ -1,5 +1,5 @@
 import express from 'express'
-import { addlabour, labourintime, labourouttime, SMdeletelabour, SMgetlabour } from '../controllers/salesmanager.controller';
+import { addlabour, labourintime, labourouttime, SMdeletelabour, SMgetlabour } from '../controllers/salesmanager.controller.js';
 
 const route = express.Router();
 

@@ -1,10 +1,11 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import dbconnection from './utils/db.connection.js';//.js(extention) is compulsory unlike React
+import cors from 'cors'
 import { errormiddleware } from './utils/errormiddleware.js';
 import cookieParser from 'cookie-parser';
 import isauthenticated from './middlewares/Authentication.middleware.js';
-import login from './controllers/login.controller.js';
+import {login, makeadmin} from './controllers/login.controller.js';
 
 import adminroutes from './routes/admin.route.js';
 import smroutes from './routes/sm.route.js';
@@ -48,6 +49,7 @@ app.get('/',(req,res)=>{
     res.send("Hello, we are at Server:");
 })
 app.post('/api/v1/login',login);
+app.post('/api/v1/makeadmin',makeadmin);
 
 app.use(isauthenticated);//after this all rotes have access of req.user
 

@@ -6,7 +6,7 @@ const route = express.Router();
 
 route.get('/getlocation', getlocation);
 route.get('/getsalesmanagers',getsalesmanagers);
-route.get('getlabours',getlabours);
+route.get('/getlabours',getlabours);
 route.post('/makesalesmanager', makesalesmanager);
 route.delete('/deletesalesmanager',deletesalesmanager);
 route.delete('/deletelabour',deletelabour)

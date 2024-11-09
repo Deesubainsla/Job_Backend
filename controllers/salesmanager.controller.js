@@ -1,12 +1,13 @@
 import { Labour } from "../models/labour.model.js";
 import { Salesmanager } from "../models/salesmanager.model.js";
 import wrapper from "../utils/trycatchwrapper.js";
+import { error } from "../utils/errormiddleware.js";
 
 
 const addlabour = wrapper(async(req, res)=>{
 
     const {id, role} = req.user;
-    if(role != 'Salesmanager'){
+    if(role != 'salesmanager'){
         throw new error("Only Salesmanager can do this action",401);
     }
 
@@ -35,7 +36,7 @@ const SMdeletelabour = wrapper(async(req, res)=>{
         throw new error("Only Admin and Salesmanager can do this action",401);
     }
 
-    const {labour_id} = req.params;
+    const {labour_id} = req.query;
 
     const user = await Labour.findOne({_id:labour_id});
     if(!user){
@@ -101,7 +102,7 @@ const labourintime = wrapper(async(req, res)=>{
     labour.intime = intime;
     await labour.save();
 
-    res.status(200).json({message:"Labour intime has updated"}, labour);
+    res.status(200).json({message:"Labour intime has updated",labour});
 
 })
 const labourouttime = wrapper(async(req, res)=>{
@@ -129,7 +130,7 @@ const labourouttime = wrapper(async(req, res)=>{
     labour.outtime = outtime;
     await labour.save();
 
-    res.status(200).json({message:"Labour outtime has updated"}, labour);
+    res.status(200).json({message:"Labour outtime has updated",labour});
 
 })
 
