@@ -6,6 +6,7 @@ import { errormiddleware } from './utils/errormiddleware.js';
 import cookieParser from 'cookie-parser';
 import isauthenticated from './middlewares/Authentication.middleware.js';
 import {login, makeadmin, getprofile, logout} from './controllers/login.controller.js';
+import path from 'path'
 
 import adminroutes from './routes/admin.route.js';
 import smroutes from './routes/sm.route.js';
