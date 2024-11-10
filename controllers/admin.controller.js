@@ -59,14 +59,14 @@ const deletesalesmanager = wrapper(async(req, res)=>{
         throw new error("Only Admin and Salesmanager can do this action",401);
     }
 
-    const {username} = req.query;
+    const {userid} = req.query;
 
-    const user = await Salesmanager.findOne({username});
+    const user = await Salesmanager.findOne({_id: userid});
     if(!user){
         throw new error("Salesmanager not found",401);
     }
 
-    await Salesmanager.deleteOne({username});
+    await Salesmanager.deleteOne({_id: userid});
     res.status(200)
     .json({message:"Salesman deleted successfully"})
 })
@@ -82,14 +82,14 @@ const deletelabour = wrapper(async(req, res)=>{
         throw new error("Only Admin and Salesmanager can do this action",401);
     }
 
-    const {labour_id} = req.query;
+    const {userid} = req.query;
 
-    const user = await Labour.findOne({_id:labour_id});
+    const user = await Labour.findOne({_id:userid});
     if(!user){
         throw new error("Labour not found",401);
     }
 
-    await Labour.deleteOne({_id:labour_id});
+    await Labour.deleteOne({_id:userid});
     res.status(200)
     .json({message:"Labour deleted successfully"})
 })

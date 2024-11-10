@@ -5,11 +5,11 @@ import { getlabours, getsalesmanagers, labourattendance, laboursalary, makelabou
 const route = express.Router();
 
 route.get('/salesmanagerattendance',salesmanagerattendance);
-route.get('/salesmanagersalary',salesmanagersalary);
+route.post('/salesmanagersalary',salesmanagersalary);
 route.get('/labourattendance',labourattendance);
 route.post('/makelabourattendance', makelabourattendance);
 route.post('/makesmattendance', makesmattendance);
-route.get('/laboutsalary',laboursalary);
+route.post('/laboursalary',laboursalary);
 route.get('/getsalesmanager', getsalesmanagers);
 route.get('/getlabours',getlabours);
 

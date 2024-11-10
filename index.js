@@ -5,7 +5,7 @@ import cors from 'cors'
 import { errormiddleware } from './utils/errormiddleware.js';
 import cookieParser from 'cookie-parser';
 import isauthenticated from './middlewares/Authentication.middleware.js';
-import {login, makeadmin} from './controllers/login.controller.js';
+import {login, makeadmin, getprofile, logout} from './controllers/login.controller.js';
 
 import adminroutes from './routes/admin.route.js';
 import smroutes from './routes/sm.route.js';
@@ -16,14 +16,14 @@ import hrroutes from './routes/hr.route.js';
 dotenv.config();
 dbconnection();
 const app = express();
-const port = process.env.PORT || 4000;//if env is not available(for safe side:)
+const port = process.env.PORT || 3000;//if env is not available(for safe side:)
 
 
 
 //middlewares
 
 app.use(express.json());//used with application/json content-type:
-app.use(express.urlencoded({extended: false})); //used with multipart/form-data
+app.use(express.urlencoded({extended: true})); //used with multipart/form-data
 app.use(cookieParser()); //used to read cookie present in request:
 app.use(cors({
     origin: function (origin, callback) {
@@ -50,8 +50,11 @@ app.get('/',(req,res)=>{
 })
 app.post('/api/v1/login',login);
 app.post('/api/v1/makeadmin',makeadmin);
+app.post('/api/v1/logout',logout);
 
 app.use(isauthenticated);//after this all rotes have access of req.user
+
+app.get('/api/v1/getprofile',getprofile);
 
 app.use('/api/v1/admin',adminroutes);
 app.use('/api/v1/sm',smroutes);

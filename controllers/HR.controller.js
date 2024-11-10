@@ -8,7 +8,7 @@ import { error } from "../utils/errormiddleware.js";
 
 const salesmanagerattendance = wrapper(async(req, res)=>{
     const {role, id} = req.user;
-    if(role != 'HR'){
+    if(role != 'hr'){
         throw new error("Only HR can do this action",401);
     }
 
@@ -64,11 +64,12 @@ const salesmanagerattendance = wrapper(async(req, res)=>{
 const makesmattendance = wrapper(async(req, res)=>{
     
     const {role, id} = req.user;
-    if(role != 'HR'){
+    if(role != 'hr'){
         throw new error("Only HR can do this action",401);
     }
 
     const {date, userid, status} = req.body;
+    // console.log(date, userid, status);
     if(!date || !userid || !status){
         throw new error("Please provide complete information:",401);
     }
@@ -92,11 +93,13 @@ const makesmattendance = wrapper(async(req, res)=>{
 const makelabourattendance = wrapper(async(req, res)=>{
 
     const {role, id} = req.user;
-    if(role != 'HR'){
+    if(role != 'hr'){
         throw new error("Only HR can do this action",401);
     }
 
     const {date, userid, status} = req.body;
+    
+    
     if(!date || !userid || !status){
         throw new error("Please provide complete information:",401);
     }
@@ -121,11 +124,11 @@ const makelabourattendance = wrapper(async(req, res)=>{
 const salesmanagersalary = wrapper(async(req, res)=>{
 
     const {role, id} = req.user;
-    if(role != 'HR'){
+    if(role != 'hr'){
         throw new error("Only HR can do this action",401);
     }
 
-    const {salaryperday, userid, year, month} = req.query;
+    const {salaryperday, userid, year, month} = req.body;
 
     if(!userid || !salaryperday || !year || !month){
         throw new error("Please provide complete details:")
@@ -177,7 +180,7 @@ const salesmanagersalary = wrapper(async(req, res)=>{
     })
 
     await salary.save();
-    res.status(200).json({message:"Salesmanager salary fetched successfully",salary});
+    res.status(200).json({message:"Salesmanager salary fetched successfully",totalday,salary});
 
 })
 
@@ -185,7 +188,7 @@ const salesmanagersalary = wrapper(async(req, res)=>{
 const labourattendance = wrapper(async(req, res)=>{
 
     const {role, id} = req.user;
-    if(role != 'HR'){
+    if(role != 'hr'){
         throw new error("Only HR can do this action",401);
     }
 
@@ -239,11 +242,11 @@ const labourattendance = wrapper(async(req, res)=>{
 const laboursalary = wrapper(async(req, res)=>{
 
     const {role, id} = req.user;
-    if(role != 'HR'){
+    if(role != 'hr'){
         throw new error("Only HR can do this action",401);
     }
 
-    const {salaryperday, userid, year, month} = req.query;
+    const {salaryperday, userid, year, month} = req.body;
     if(!userid || !salaryperday || !year || !month){
         throw new error("Please provide complete details:")
     }
@@ -295,7 +298,7 @@ const laboursalary = wrapper(async(req, res)=>{
 
     await salary.save();
 
-    res.status(200).json({message:"Labour salary fetched successfully",salary});
+    res.status(200).json({message:"Labour salary fetched successfully",totalday,salary});
 
 })
 
@@ -303,7 +306,7 @@ const laboursalary = wrapper(async(req, res)=>{
 const getlabours = wrapper(async(req, res)=>{
 
     const {role, id} = req.user;
-    if(role != 'HR'){
+    if(role != 'hr'){
         throw new error("Only HR can do this action",401);
     }
 
@@ -315,7 +318,7 @@ const getlabours = wrapper(async(req, res)=>{
 const getsalesmanagers = wrapper(async(req, res)=>{
 
     const {role, id} = req.user;
-    if(role != 'HR'){
+    if(role != 'hr'){
         throw new error("Only HR can do this action",401);
     }
 
