@@ -67,6 +67,18 @@ app.use(errormiddleware);
 //using error middleware
 
 
+//frontend static file distribution
+
+const dirpath = path.resolve();
+app.use(express.static(path.join(dirpath,'dist')));
+
+app.get('*',(req,res)=>{
+    res.sendFile(path.join(dirpath, "dist","index.html"));
+});
+
+//frontend static file distribution
+
+
 app.listen(port,()=>{
     console.log(`app is listning on port:${port}`)
 })

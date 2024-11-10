@@ -1,0 +1,1 @@
+import{j as e}from"./index-tiGp5QrS.js";function n(){return e.jsx("div",{className:"text-4xl font-bold flex f-screen w-screen justify-center items-center",children:"Page not found 404"})}export{n as default};

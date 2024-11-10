@@ -42,7 +42,8 @@ const login = wrapper(
         .cookie("user", token, {
             maxAge: 2*24*60*60*1000,//2 days
             secure: true,
-            httponly:true
+            httponly:true,
+            sameSite: 'None'
         })
         .json({
             message:"User loggedin successfully",
