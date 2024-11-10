@@ -51,19 +51,14 @@ app.post('/api/v1/login',login);
 app.post('/api/v1/makeadmin',makeadmin);
 app.post('/api/v1/logout',logout);
 
-app.use(isauthenticated);//after this all rotes have access of req.user
+// app.use(isauthenticated);//after this all rotes have access of req.user
 
-app.get('/api/v1/getprofile',getprofile);
+app.get('/api/v1/getprofile',isauthenticated,getprofile);
 
 app.use('/api/v1/admin',adminroutes);
 app.use('/api/v1/sm',smroutes);
 app.use('/api/v1/hr',hrroutes);
 //routes
-
-
-//using error middleware
-app.use(errormiddleware);
-//using error middleware
 
 
 //frontend static file distribution
@@ -76,6 +71,13 @@ app.get('*',(req,res)=>{
 });
 
 //frontend static file distribution
+
+
+
+//using error middleware
+app.use(errormiddleware);
+//using error middleware
+
 
 
 app.listen(port,()=>{
