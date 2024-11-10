@@ -46,9 +46,7 @@ app.use(cors({
 
 
 
-app.get('/',(req,res)=>{
-    res.send("Hello, we are at Server:");
-})
+
 app.post('/api/v1/login',login);
 app.post('/api/v1/makeadmin',makeadmin);
 app.post('/api/v1/logout',logout);
