@@ -12,15 +12,16 @@ const getlocation = wrapper(async(req, res)=>{
     }
 
     const labours = await Labour.find().select('name location').populate('salesmanager','username');
+    
 
     const location = labours.map(({salesmanager, name, location})=>{
         return {
-            salesmanager: salesmanager.username,
+            salesmanager: salesmanager?.username,//very beneficial (?.)
             labour: name,
             location
         }
     })
-
+    
     res.status(200)
     .json({message:"location fetched successfully", location})
 })
